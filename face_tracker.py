@@ -12,7 +12,8 @@ import httplib
 import numpy as np
 import urllib
 
-cascPath = sys.argv[1]
+#cascPath = sys.argv[1]
+cascPath = "haarcascade_frontalface_alt.xml"
 faceCascade = cv2.CascadeClassifier(cascPath)
 
 video_URL="http://10.0.0.43:8080/video"
@@ -52,6 +53,9 @@ while True:
     # Draw a rectangle around the faces
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+	centerX=x+(w/2)
+	centerY=y+(h/2)
+	print("X: "+str(centerX)+" Y: "+str(centerY))
 
     # Display the resulting frame
     cv2.imshow('Video', frame)
